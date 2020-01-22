@@ -1,0 +1,55 @@
+{
+    "Basic Module": "DEMO_BM", 
+    "Brief Description": "Este es un ejemplo de un m\u00f3dulo b\u00e1sico.", 
+    "Functions": [
+        {
+            "Description": "Esta es una funcion que genera texto.", 
+            "Exec-condition": "ninguna", 
+            "Input-params": [
+                {
+                    "Data-type": "std_msgs/String", 
+                    "Description": "", 
+                    "Name": "Aviso"
+                }, 
+                {
+                    "Data-type": "std_msgs/Bool", 
+                    "Description": "", 
+                    "Name": "Bandera"
+                }
+            ], 
+            "Name": "functionA", 
+            "Output-params": [
+                {
+                    "Data-type": "std_msgs/String", 
+                    "Description": "", 
+                    "Name": "status"
+                }
+            ]
+        }, 
+        {
+            "Description": "Esta es una funcion que quenera un valor booleano.", 
+            "Exec-condition": "ninguna", 
+            "Input-params": [
+                {
+                    "Data-type": "std_msgs/Bool", 
+                    "Description": "", 
+                    "Name": "LSB"
+                }, 
+                {
+                    "Data-type": "std_msgs/String", 
+                    "Description": "", 
+                    "Name": "Contexto"
+                }
+            ], 
+            "Name": "functionB", 
+            "Output-params": [
+                {
+                    "Data-type": "std_msgs/Bool", 
+                    "Description": "", 
+                    "Name": "flag"
+                }
+            ]
+        }
+    ], 
+    "Hardware Required": []
+}
