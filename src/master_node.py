@@ -9,6 +9,8 @@ import json   # JSON <--> string
 # parameters of its functions)
 from std_msgs.msg import String
 from std_msgs.msg import Bool
+from geometry_msgs.msg import Point
+from std_msgs.msg import Float64
 
 class MasterNode:
     def __init__(self):
@@ -21,6 +23,12 @@ class MasterNode:
         self.__comm_sub = rospy.Subscriber(top_comm_sub,String,self.__comm_cb)
         #subscriber for the user to trigger the master node
         self.__trig_sub = rospy.Subscriber('/trigger',String,self.__trig_cb)
+        #DISPLAY IN CONSOLE THE BRIDGE INFO
+        rospy.loginfo("MASTER NODE")
+        rospy.loginfo("COMM-TOPICS")
+        rospy.loginfo("\t%s",top_comm_pub)
+        rospy.loginfo("\t%s",top_comm_sub)
+        rospy.loginfo("######################################")
 
     def __comm_cb(self,data):
         #Receive the result from a function execution
@@ -52,10 +60,29 @@ class MasterNode:
             js = commBM.writeFunCallFromRos('DEMO_BM','functionB',ros_msg)
             msg = String(js)
             self.__comm_pub.publish(msg)
+        elif(str(data.data).find('p') != -1):
+            if(str(data.data).find('grasp') != -1):
+                t = Point(1,2,-5)
+                r = Float64(0.2)
+                ros_msg = [t,r]
+                js = commBM.writeFunCallFromRos('PYTHON_BM','graspObject',ros_msg)
+                msg = String(js)
+                self.__comm_pub.publish(msg)
+            elif(str(data.data).find('put') != -1):
+                t = Point(6.4,9,3)
+                ros_msg = [t]
+                js = commBM.writeFunCallFromRos('PYTHON_BM','putObject',ros_msg)
+                msg = String(js)
+                self.__comm_pub.publish(msg)
+            elif(str(data.data).find('safe') != -1):
+                ros_msg = []
+                js = commBM.writeFunCallFromRos('PYTHON_BM','goSafePos',ros_msg)
+                msg = String(js)
+                self.__comm_pub.publish(msg)
 
 def main(args):
+    rospy.init_node('master_node', anonymous=False)
     mn = MasterNode()
-    rospy.init_node('master_node', anonymous=True)
     try:
         rospy.spin()
     except KeyboardInterrupt:

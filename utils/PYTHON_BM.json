@@ -1,0 +1,80 @@
+{
+    "Basic Module": "PYTHON_BM", 
+    "Brief Description": "Basic module developed for tasks related to object manipulation.", 
+    "Functions": [
+        {
+            "Description": "The gripper opens (based on the target object's radius) and the end-effector is sent to the object's centroid coordinate, then the gripper closes.", 
+            "Exec-condition": "The robot's base must be still.", 
+            "Input-params": [
+                {
+                    "Data-type": "geometry_msgs/Point", 
+                    "Description": "Centroid of the target object.", 
+                    "Name": "target_pos"
+                }, 
+                {
+                    "Data-type": "std_msgs/Float64", 
+                    "Description": "Radius of the target object, employed to determine how wide the gripper should open.", 
+                    "Name": "obj_radius"
+                }
+            ], 
+            "Name": "graspObject", 
+            "Output-params": [
+                {
+                    "Data-type": "std_msgs/Bool", 
+                    "Description": "Reflects the success on grasping the target object.", 
+                    "Name": "success"
+                }, 
+                {
+                    "Data-type": "geometry_msgs/Point", 
+                    "Description": "Position of the end-effector at the moment this function finishes.", 
+                    "Name": "final_pos"
+                }
+            ]
+        }, 
+        {
+            "Description": "The end-effector is sent to the target position and fully opens its gripper.", 
+            "Exec-condition": "The robot's base must be still.", 
+            "Input-params": [
+                {
+                    "Data-type": "geometry_msgs/Point", 
+                    "Description": "Target position for the end-effector.", 
+                    "Name": "target_pos"
+                }
+            ], 
+            "Name": "putObject", 
+            "Output-params": [
+                {
+                    "Data-type": "std_msgs/Bool", 
+                    "Description": "Reflects the success on reaching the target position and openning its gripper.", 
+                    "Name": "success"
+                }, 
+                {
+                    "Data-type": "geometry_msgs/Point", 
+                    "Description": "Position of the end-effector at the moment this function finishes.", 
+                    "Name": "final_pos"
+                }
+            ]
+        }, 
+        {
+            "Description": "The robot's gripper is closed (in case it open) and the end-effector is sent to a predefined safe position.", 
+            "Exec-condition": "The robot's base must be still.", 
+            "Input-params": [], 
+            "Name": "goSafePos", 
+            "Output-params": [
+                {
+                    "Data-type": "std_msgs/Bool", 
+                    "Description": "Reflects the success on reaching the safe position.", 
+                    "Name": "success"
+                }, 
+                {
+                    "Data-type": "geometry_msgs/Point", 
+                    "Description": "Position of the end-effector at the moment this function finishes.", 
+                    "Name": "final_pos"
+                }
+            ]
+        }
+    ], 
+    "Hardware Required": [
+        "Robotic arm"
+    ]
+}
