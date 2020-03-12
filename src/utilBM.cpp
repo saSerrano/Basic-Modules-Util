@@ -2,8 +2,9 @@
 
 using json = nlohmann::json;
 using namespace std;
+using namespace basicmodutil_pkg;
 
-string getRosType(const boost::any &ros_msg)
+string basicmodutil_pkg::getRosType(const boost::any &ros_msg)
 {
 	//Remove the extra-text at both ends
 	const type_info &ti = ros_msg.type();

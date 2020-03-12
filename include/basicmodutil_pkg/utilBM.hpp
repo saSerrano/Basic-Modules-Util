@@ -19,12 +19,15 @@
 #ifndef __UTILBM__H
 #define __UTILBM__H
 
-/*
-* \brief Method to obtain the data-type of a ROS message, in the format 'msg_package/msg_name'.
-* \param ros_msg ROS message instance.
-* \return String that contains the data-type of 'ros_msg'.
-*/
-std::string getRosType(const boost::any &ros_msg);
+namespace basicmodutil_pkg
+{
+	/*
+	* \brief Method to obtain the data-type of a ROS message, in the format 'msg_package/msg_name'.
+	* \param ros_msg ROS message instance.
+	* \return String that contains the data-type of 'ros_msg'.
+	*/
+	std::string getRosType(const boost::any &ros_msg);
+}
 
 class BMTemplate
 {

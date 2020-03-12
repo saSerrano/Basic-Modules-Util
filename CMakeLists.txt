@@ -18,8 +18,8 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_python_setup()
 
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES basicmodutil_pkg
+  INCLUDE_DIRS include
+  LIBRARIES basicmodutil_pkg
   CATKIN_DEPENDS roscpp roslib rospy std_msgs rospy_message_converter
 #  DEPENDS system_lib
 )
@@ -32,3 +32,17 @@ include_directories(
 add_executable(bmod_node src/bm_node.cpp src/utilBM.cpp)
 target_link_libraries(bmod_node ${catkin_LIBRARIES})
 
+add_library(basicmodutil_pkg src/utilBM.cpp)
+target_link_libraries(basicmodutil_pkg ${catkin_LIBRARIES})
+
+install(
+  TARGETS basicmodutil_pkg
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
+
+install(
+  DIRECTORY include/basicmodutil_pkg/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)
