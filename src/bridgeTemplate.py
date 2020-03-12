@@ -2,7 +2,7 @@
 # coding=utf-8
 import sys
 import rospy  # ROS
-import commBM # Basic module communication functions
+from basicmodutil_pkg import commBM # Basic module communication functions
 import json   # JSON <--> string
 
 # Import each data-type required by the basic module (see the input and output

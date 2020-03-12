@@ -2,7 +2,7 @@
 # coding=utf-8
 import sys
 import rospy  # ROS
-import commBM # Basic module communication functions
+from basicmodutil_pkg import commBM # Basic module communication functions
 import json   # JSON <--> string
 from std_msgs.msg import String # Necessary for the basic-mod comunicates with the master node
 
