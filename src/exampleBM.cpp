@@ -137,27 +137,17 @@ void BMTemplate::sync_cb(const std_msgs::String::ConstPtr& msg)
 			ROS_INFO("\t%s",inparam_topics[i].c_str());
 		ROS_INFO("--------------------------------");
 
-		/*
-			NOTE:
-			At this point, 'fun' holds the name of the requested function and 'inparams'
-			is a vector that contains the function's input parameters ROS-message objects,
-			in the order in which they were defined in the basic module's description.
-		*/
-
 		//Invoke the requested function
-		if(fun == "functionA")
+		if(fun == "desplazar")
 		{
-			//invoke 'functionA'
-			auto param1 = boost::any_cast<std_msgs::String>(buffer[inparam_topics[0]]);
-			auto param2 = boost::any_cast<std_msgs::Bool>(buffer[inparam_topics[1]]);
-			functionA(param1,param2);
+			auto param1 = boost::any_cast<geometry_msgs::Twist>(buffer[inparam_topics[0]]);
+			auto param2 = boost::any_cast<std_msgs::Float64>(buffer[inparam_topics[1]]);
+			desplazar(param1,param2);
 		}
-		else if(fun == "functionB")
+		else if(fun == "posicion")
 		{
-			//invoke 'functionB'
-			auto param1 = boost::any_cast<std_msgs::Bool>(buffer[inparam_topics[0]]);
-			auto param2 = boost::any_cast<std_msgs::String>(buffer[inparam_topics[1]]);
-			functionB(param1,param2);
+			auto param1 = boost::any_cast<geometry_msgs::Point>(buffer[inparam_topics[0]]);
+			posicion(param1);
 		}
 		//Add a case for each function in the basic module
 
@@ -184,12 +174,14 @@ bool BMTemplate::returnOutParams(vector<string> param_names, vector<boost::any> 
 		string ros_type = getRosType(params[i]);
 
 		//Cast the i-th param to its data-type
-		if(ros_type  == "std_msgs/String")
-			data_pubs[ros_type].publish(boost::any_cast<std_msgs::String>(params[i]));
+		if(ros_type  == "geometry_msgs/Twist")
+			data_pubs[ros_type].publish(boost::any_cast<geometry_msgs::Twist>(params[i]));
+		else if(ros_type  == "std_msgs/Float64")
+			data_pubs[ros_type].publish(boost::any_cast<std_msgs::Float64>(params[i]));
+		else if(ros_type  == "geometry_msgs/Point")
+			data_pubs[ros_type].publish(boost::any_cast<geometry_msgs::Point>(params[i]));
 		else if(ros_type  == "std_msgs/Bool")
 			data_pubs[ros_type].publish(boost::any_cast<std_msgs::Bool>(params[i]));
-		//... and as many cases for the data-types the basic-module has
-
 
 		//Get the topic in which 'params[i]' is published
 		outparam_topics.push_back(data_pubs[ros_type].getTopic());
