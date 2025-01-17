@@ -1,14 +1,16 @@
 # Basic Modules Utilities
 
-El propósito de este repositorio es el de proveer un formato estándar para el desarrollo de habilidades del robot de servicio Markovito, al cual nos referimos como **módulo básico**.
-Encapsular un conjunto de habilidades relacionadas entre sí en un **módulo básico** ofrece los siguientes beneficios:
-- Facilita la integración de diversas habilidades (que no están relacionadas entre sí) en un solo sistema.
-- Permite el desarrollo de distintas habilidades de manera simultánea.
-- Al seguir un mismo formato base, la documentación de las habilidades resulta sencilla de entender para aquellas personas que no desarrollaron dicha habilidad.
+The purpose of this repository is to provide a standard format for the development skills (of the Markovito service robot) which we refer to as **Basic Modules**.
+To encapsulate a collection of related skills into a **Basic Module** offers the following benefits:
+- Eases the integration of multiple skills (that are not related to each other) in a single system
+- Allows developing different sets of skills simultaneously
+- Basic Modules can be used in a plug-and-play fashion, ready to be invoked by the decision making system (e.g., policy, state machine, teleoperator)
+- By developing skills with the same interface, skill documentation is easier to read
 
-## Documentación y archivos plantilla
-En los directorios ```src``` y ```include/basicmodutil_pkg``` se encuentran archivos plantilla con los cuales uno puede desarrollar un **módulo básico**, ya sea python o C++.
-Por otra parte, en el directorio ```utils``` se encuentran los siguientes archivos:
-- ```Basic_Module_Handbook.pdf```: archivo PDF que contiene la documentación para el uso de los archivos plantilla contenidos en este repositorio. En este archivo se detalla la motivación para encapsular habilidades en **módulos básicos**, así como varios ejemplos a partir de los archivos plantilla.
-- ```writeBM.py```: un script que facilita la generación de archivos JSON que son necesarios para la documentación de los **módulos básicos**.
-- ```DEMO_BM.json``` y ```PYTHON_BM.json```: ejemplos de archivos JSON de documentación para **módulos básicos**.
+## Documentation and template files
+Template files can be found in the ```src``` and ```include/basicmodutil_pkg``` directories, which can be used to develop a **Basic Module**, whether it is in Python or C++.
+On the other hand, the ```utils``` directory contains the following files:
+- ```Basic_Module_Handbook.pdf```: A pdf file conatining the documentation for the usage of the template files of this repository. The document details the motivation behind encapsulating skills into **Basic Modules**, as well as several examples.
+- ```writeBM.py```: A script that eases the generation of json files, which are necessary fot the **Basic Modules** documentation.
+- ```DEMO_BM.json``` y ```PYTHON_BM.json```: Examples of json documentation files.
+
